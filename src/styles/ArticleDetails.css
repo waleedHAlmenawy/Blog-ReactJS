@@ -1,0 +1,192 @@
+.popup-outer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.2);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.popup-inner {
+  position: relative;
+  width: 75vw;
+  height: 75vh;
+  max-width: 900px;
+
+  border-radius: 0 50px 50px 50px;
+
+  overflow: hidden;
+
+  background-color: #fff;
+
+  display: flex;
+}
+
+.image-section {
+  position: relative;
+
+  width: 60%;
+  height: 100%;
+}
+
+.image-section .image {
+  background-size: cover;
+  background-position: center;
+  height: 100%;
+}
+
+.image-section .title {
+  position: absolute;
+  font-weight: bold;
+  color: white;
+
+  text-shadow: #000 0px 0 5px;
+
+  margin: 70px 20px 50px 50px;
+}
+
+.image-section .exit {
+  position: absolute;
+  font-weight: bold;
+  color: white;
+
+  border-radius: 0 50px 50px 50px;
+
+  border: 1px solid;
+  
+  background-color: black;
+  
+  width: 3rem;
+  height: 3rem;
+  
+  font-size: 2rem;
+  
+  transition: all 0.2s;
+}
+
+.image-section .exit:hover {
+  background-color: white;
+  
+  color: black;
+  
+  border: 1px solid;
+  transition: all 0.2s;
+}
+
+.data-section {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  width: 50%;
+  height: 100%;
+}
+
+.data-section .line {
+  height: 1px;
+  width: 80%;
+  background-color: grey;
+  margin: 10px 40px;
+}
+
+.data-section .user-data {
+  height: 10%;
+}
+
+.data-section .body {
+  height: 70%;
+}
+
+.data-section .add-comment {
+  height: 10%;
+}
+
+.data-section .body .article-body {
+  padding: 0 20px;
+  max-height: 50%;
+
+  overflow: scroll;
+  overflow-x: hidden;
+}
+
+.data-section .body .comments-section {
+  max-height: 30%;
+
+  overflow: scroll;
+  overflow-x: hidden;
+}
+
+.data-section .buttons-section {
+  display: flex;
+  justify-content: space-around;
+}
+
+.data-section .buttons-section .like,
+.data-section .buttons-section .comment {
+  width: 80px;
+}
+
+@media screen and  (max-width: 720px) {
+  .popup-inner {
+    flex-direction: column;
+  }
+
+  .image-section {
+    width: 100%;
+    height: 30%;
+  }
+
+  .image-section .title {
+    position: absolute;
+    font-weight: bold;
+    color: white;
+
+    margin: 20px 10px 20px 50px;
+  }
+
+  .data-section {
+    width: 100%;
+    height: 70%;
+  }
+
+
+  .data-section .line {
+    height: 1px;
+    background-color: grey;
+  }
+
+  /***********************/
+
+  .data-section .user-data {
+    height: 15%;
+  }
+  
+  .data-section .body {
+    height: 65%;
+  }
+  
+  .data-section .add-comment {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    height: 10%;
+  }
+  
+  .data-section .body .article-body {
+    max-height: 40%;
+  }
+  
+  .data-section .body .comments-section {
+    max-height: 30%;
+  
+    overflow: scroll;
+    overflow-x: hidden;
+  }
+
+  .data-section .buttons-section {
+    margin: -20px;
+  }
+}

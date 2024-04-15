@@ -1,0 +1,107 @@
+.container {
+  display: flex;
+  flex-direction: column
+  ;
+  justify-content: center;
+  align-items: center;
+
+  min-height: 100vh;
+}
+
+.sign {
+  width: 100%;
+
+  max-width: 420px;
+  min-height: 400px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+
+  padding: 2rem;
+  border-left: 1px solid;
+
+  margin-top: 20px;
+}
+
+.sign-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  flex-grow: 1;
+  padding-bottom: 1rem;
+}
+
+#sign-link,
+#sign-link:visited {
+  color: black;
+  font-weight: bold;
+}
+
+.sign-input {
+    border: 1px solid;
+}
+
+.sign-input[type="text"],
+.sign-input[type="password"],
+.sign-button,
+.sign-text-area {
+  font-family: "Nunito", sans-serif;
+  font-size: 16px;
+  padding: 0.5rem;
+  border-radius: 1rem;
+}
+
+.sign-label,
+.sign-button {
+  margin-top: 1rem;
+}
+
+.sign-button {
+  padding: 0.5rem;
+  background-color: #000;
+  color: #fff;
+}
+
+.instructions {
+  font-size: 0.75rem;
+  border-radius: 1rem;
+  background: #000;
+  color: #fff;
+  padding: 0.5rem;
+  position: relative;
+  bottom: -10px;
+}
+
+.instructions > svg {
+  margin-right: 0.25rem;
+}
+
+.offscreen {
+  position: absolute;
+  left: -9999px;
+}
+
+.hide {
+  display: none;
+}
+
+.valid {
+  color: limegreen;
+  margin-left: 0.25rem;
+}
+
+.invalid {
+  color: red;
+  margin-left: 0.25rem;
+}
+
+.errmsg {
+  color: firebrick;
+  padding: 0.5rem;
+  text-align: center;
+}
+
+.line {
+  display: inline-block;
+}

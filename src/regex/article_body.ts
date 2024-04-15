@@ -1,0 +1,1 @@
+export const BODY_REGEX = /^(?:[\s\S]){50,6000}$/;

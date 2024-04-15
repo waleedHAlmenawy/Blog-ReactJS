@@ -1,0 +1,26 @@
+.outer-message {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.2);
+
+  z-index: 100;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.inner-message {
+  position: relative;
+
+  padding: 32px;
+
+  width: 75%;
+  max-width: 400px;
+  border-radius: 30px;
+
+  background-color: #fff;
+}
