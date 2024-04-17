@@ -19,6 +19,7 @@ export default function UserData({
   const [trigger, setTrigger] = useState(false);
   const [btnSwitch, setBtnSwitch] = useState("");
   const [userProfile]: any = useUser();
+
   const navigate = useNavigate();
 
   function handleEdit() {
@@ -41,7 +42,7 @@ export default function UserData({
                 handleDeleteArticle(articleId);
               }
         }
-        btnColor={btnSwitch === "edit" ? "emerald" : "red"}
+
         btnName={btnSwitch === "edit" ? "Edit" : "Delete"}
         message={
           btnSwitch === "edit"

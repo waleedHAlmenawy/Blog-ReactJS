@@ -6,6 +6,7 @@ import PopupMessage from "./popups/PopupMessage";
 
 export default function Comment({ comment, handleDeleteComment }: any) {
   const [trigger, setTrigger] = useState(false);
+
   const { auth }: any = useAuth();
 
   return (
@@ -13,7 +14,6 @@ export default function Comment({ comment, handleDeleteComment }: any) {
       <PopupMessage
         trigger={trigger}
         setTrigger={setTrigger}
-        btnColor="red"
         btnName="Delete"
         handleOnClick={() => {
           handleDeleteComment(comment._id);
@@ -34,7 +34,7 @@ export default function Comment({ comment, handleDeleteComment }: any) {
               </button>
               <ul
                 tabIndex={0}
-                className="menu menu-sm dropdown-content shadow rounded-box text-black bg-white"
+                className="menu menu-sm dropdown-content shadow rounded-box text-black bg-white z-50"
               >
                 <li>
                   <a

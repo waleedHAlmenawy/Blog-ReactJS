@@ -80,7 +80,7 @@
 .data-section {
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
+  justify-content: space-around;
   width: 50%;
   height: 100%;
 }
@@ -113,7 +113,7 @@
 }
 
 .data-section .body .comments-section {
-  max-height: 30%;
+  max-height: 40%;
 
   overflow: scroll;
   overflow-x: hidden;

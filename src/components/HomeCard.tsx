@@ -7,6 +7,10 @@ export default function HomeCard() {
   useEffect(() => {
     console.log(homeArticles);
   }, [homeArticles]);
+
+  function handleDate(dateNum: number) {
+    let date = new Date(dateNum);
+  }
   return (
     <div className=" text-white flex">
       <div
@@ -59,26 +63,24 @@ export default function HomeCard() {
               {homeArticles[1]?.title}
             </p>
 
-            <div className="flex justify-between items-center text-xs max-w-64  bg-black w-full rounded-full pr-2">
-              <div
-                tabIndex={0}
-                role="button"
-                className="btn btn-ghost btn-circle avatar"
-              >
-                <div className="w-8 rounded-full">
-                  <img
-                    alt="Tailwind CSS Navbar component"
-                    src={homeArticles[1]?.user.image}
-                  />
-                </div>
+            <div className="flex justify-between items-center text-sm max-w-80 bg-black w-full rounded-full pr-2">
+            <div
+              tabIndex={0}
+              role="button"
+              className="btn btn-ghost btn-circle avatar"
+            >
+              <div className="w-32 rounded-full">
+                <img
+                  alt="Tailwind CSS Navbar component"
+                  src={homeArticles[1]?.user.image}
+                />
               </div>
-
-              <div className="drop-shadow">
-                {homeArticles[1]?.user.username}
-              </div>
-              <div className="w-1 h-1 rounded-full bg-white mx-1"></div>
-              <div className="drop-shadow">Decamber 29, 2017</div>
             </div>
+
+            <div>{homeArticles[1]?.user.username}</div>
+            <div className="w-1 h-1 rounded-full bg-white"></div>
+            <div>Decamber 29, 2017</div>
+          </div>
           </div>
         </div>
 
@@ -96,26 +98,24 @@ export default function HomeCard() {
               {homeArticles[2]?.title}
             </p>
 
-            <div className="flex justify-between items-center text-xs max-w-64  bg-black w-full rounded-full pr-2">
-              <div
-                tabIndex={0}
-                role="button"
-                className="btn btn-ghost btn-circle avatar"
-              >
-                <div className="w-8 rounded-full">
-                  <img
-                    alt="Tailwind CSS Navbar component"
-                    src={homeArticles[2]?.user.image}
-                  />
-                </div>
+            <div className="flex justify-between items-center text-sm max-w-80 bg-black w-full rounded-full pr-2">
+            <div
+              tabIndex={0}
+              role="button"
+              className="btn btn-ghost btn-circle avatar"
+            >
+              <div className="w-32 rounded-full">
+                <img
+                  alt="Tailwind CSS Navbar component"
+                  src={homeArticles[2]?.user.image}
+                />
               </div>
-
-              <div className="drop-shadow">
-                {homeArticles[2]?.user.username}
-              </div>
-              <div className="w-1 h-1 rounded-full bg-white mx-1"></div>
-              <div className="drop-shadow">Decamber 29, 2017</div>
             </div>
+
+            <div>{homeArticles[2]?.user.username}</div>
+            <div className="w-1 h-1 rounded-full bg-white"></div>
+            <div>Decamber 29, 2017</div>
+          </div>
           </div>
         </div>
       </div>

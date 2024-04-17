@@ -24,3 +24,27 @@
 
   background-color: #fff;
 }
+
+.msg-danger {
+  color: red;
+}
+
+.msg-danger:hover {
+  background-color: red;
+}
+
+.msg-warning {
+  color: yellow;
+}
+
+.msg-warning:hover {
+  background-color: yellow;
+}
+
+.msg-success {
+  color: green;
+}
+
+.msg-success:hover {
+  background-color: green;
+}

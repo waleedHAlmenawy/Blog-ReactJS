@@ -7,12 +7,12 @@ export default function ArticleCard({ article, handleDeleteArticle }: any) {
   return (
     <>
       <div
-        className="bg-slate-100 max-w-80 w-fit pb-5 col-span-1 m-auto mt-20"
+        className="bg-slate-100 max-w-80 w-fit pb-5 col-span-1 m-auto mt-20 cursor-pointer"
         onClick={() => {
           setPopupTrigger(true);
         }}
       >
-        <img src={article.image} alt="article-img" className="col-span-1" style={
+        <img src={article.image} alt="article-img" className="col-span-1 hover:scale-125 transition-all" style={
           {
             height: '300px',
             width: '400px',

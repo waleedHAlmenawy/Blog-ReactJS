@@ -80,7 +80,7 @@ export default function Login() {
     <>
       <BackgroundImage />
 
-      <div className="container">
+      <div className="container m-auto">
         <h1
           className="text-4xl font-bold btn btn-ghost"
           onClick={() => {
