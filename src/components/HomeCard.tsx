@@ -1,7 +1,7 @@
 import useHomeArticles from "../hooks/useHomeArticles";
 
 export default function HomeCard() {
-  const [homeArticles]: any = useHomeArticles();
+  const [homeArticles] = useHomeArticles();
 
   return (
     <div className=" text-white flex">

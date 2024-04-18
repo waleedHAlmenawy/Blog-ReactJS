@@ -9,11 +9,16 @@ import { fas } from "@fortawesome/free-solid-svg-icons";
 import { useNavigate } from "react-router-dom";
 import Footer from "../components/Footer";
 import BackgroundImage from "../components/BackgroundImage";
+import { IArticle } from "../models/article.model";
 
 const ARTICLE_URL = "/articles/";
 
 export default function Home() {
-  const [articles, setArticles]: any = useArticles();
+  const [articles, setArticles]: [
+    IArticle[],
+    React.Dispatch<React.SetStateAction<IArticle[]>>
+  ] = useArticles();
+
   const axiosPrivate = useAxiosPrivate();
   const navigate = useNavigate();
 
@@ -23,13 +28,12 @@ export default function Home() {
 
   async function handleDeleteArticle(articleId: string) {
     const newArticles = articles.filter(
-      (article: any) => article._id !== articleId
+      (article: IArticle) => article._id !== articleId
     );
     setArticles(newArticles);
 
     try {
-      const res = await axiosPrivate.delete(ARTICLE_URL + articleId);
-      console.log(res.data);
+      await axiosPrivate.delete(ARTICLE_URL + articleId);
     } catch (err: any) {
       if (!err.response) {
         console.log("No server response");
@@ -55,10 +59,11 @@ export default function Home() {
 
       <div className="flex justify-center mb-10">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 lg:w-9/12">
-          {articles.map((article: any) => (
+          {articles.map((article: IArticle) => (
             <ArticleCard
               article={article}
               handleDeleteArticle={handleDeleteArticle}
+              key={article._id}
             />
           ))}
         </div>

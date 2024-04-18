@@ -1,14 +1,22 @@
 import { fas } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { IUser } from "../models/user.model";
+import { ChangeEvent, ChangeEventHandler, LegacyRef } from "react";
 
 export default function AddComment({
   handleAddComment,
   newComment,
   setNewComment,
   userProfile,
-  commentRef
-}: any) {
-  function handleInput(e: any) {
+  commentRef,
+}: {
+  handleAddComment: any;
+  newComment: string;
+  setNewComment: React.Dispatch<React.SetStateAction<string>>;
+  userProfile: IUser;
+  commentRef: LegacyRef<HTMLInputElement>;
+}) {
+  function handleInput(e: ChangeEvent<HTMLInputElement>) {
     setNewComment(e.target.value);
   }
 
@@ -21,7 +29,14 @@ export default function AddComment({
           className="btn btn-ghost btn-circle avatar"
         >
           <div className="w-8 rounded-full">
-            <img alt="Tailwind CSS Navbar component" src={userProfile.image ? userProfile.image : "http://localhost:3000/profile-image-placeholder.svg"} />
+            <img
+              alt="Tailwind CSS Navbar component"
+              src={
+                userProfile.image
+                  ? userProfile.image
+                  : "http://localhost:3000/profile-image-placeholder.svg"
+              }
+            />
           </div>
         </div>
       </div>

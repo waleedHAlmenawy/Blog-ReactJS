@@ -1,9 +1,16 @@
 import { useState } from "react";
 import ArticleDetails from "./popups/ArticleDetails";
-import Skeleton from 'react-loading-skeleton'
-import 'react-loading-skeleton/dist/skeleton.css'
+import Skeleton from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
+import { IArticle } from "../models/article.model";
 
-export default function ArticleCard({ article, handleDeleteArticle }: any) {
+export default function ArticleCard({
+  article,
+  handleDeleteArticle,
+}: {
+  article: IArticle;
+  handleDeleteArticle: any
+}) {
   const [popupTrigger, setPopupTrigger] = useState(false);
 
   return (
@@ -14,13 +21,16 @@ export default function ArticleCard({ article, handleDeleteArticle }: any) {
           setPopupTrigger(true);
         }}
       >
-        <img src={article.image || <Skeleton />} alt="article-img" className="col-span-1 hover:scale-125 transition-all" style={
-          {
-            height: '300px',
-            width: '400px',
-            objectFit: 'cover'
-          }
-        }/>
+        <img
+          src={article.image}
+          alt="article-img"
+          className="col-span-1 hover:scale-125 transition-all"
+          style={{
+            height: "300px",
+            width: "400px",
+            objectFit: "cover",
+          }}
+        />
 
         <p className="pb-5 text-center font-extrabold text-6xl col-span-1">
           ,,

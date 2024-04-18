@@ -9,7 +9,7 @@ import useAxiosPrivate from "../hooks/useAxiosPrivate";
 const ARTICLE_URL = "/articles";
 
 export default function ArticleForm() {
-  const articleRef: any = useRef();
+  const articleRef = useRef<HTMLInputElement>(null);
 
   const navigate = useNavigate();
   const location = useLocation();
@@ -30,7 +30,7 @@ export default function ArticleForm() {
   const [showImage, setShowImage]: any = useState("http://localhost:3000/article-image-placeholder.jpg");
 
   useEffect(() => {
-    articleRef.current.focus();
+    articleRef.current?.focus();
 
     if (location.pathname === "/edit") {
       (async function () {

@@ -9,6 +9,10 @@ import { useEffect, useRef, useState } from "react";
 import useUserProfile from "../../hooks/useUserProfile";
 import { useNavigate } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
+import { IUser } from "../../models/user.model";
+import { ILike } from "../../models/like.model";
+import { IComment } from "../../models/comment.model";
+import { IArticle } from "../../models/article.model";
 
 const LIKES_URL = "/likes/";
 const COMMENTS_URL = "/comments/";
@@ -21,21 +25,37 @@ export default function ArticleDetails({
 }: {
   trigger: boolean;
   setTrigger: React.Dispatch<React.SetStateAction<boolean>>;
-  article: any;
+  article: IArticle;
   handleDeleteArticle: any;
 }) {
   /* User Auth */
   const { auth }: any = useAuth();
-  const [userProfile]: any = useUserProfile();
+  const [userProfile]: [IUser, React.Dispatch<React.SetStateAction<IUser>>] = useUserProfile();
 
   /* Likes */
-  const [isLiked, setIsLiked]: any = useState(false);
-  const [likes, setLikes]: any = useState();
+  const [isLiked, setIsLiked] = useState(false);
+  const [likes, setLikes]: [ILike[], React.Dispatch<React.SetStateAction<ILike[]>>] = useState([{
+    _id: "",
+    article: "",
+    user: ""
+  }]);
 
   /* Comments */
-  const [newComment, setNewComment]: any = useState();
-  const [comments, setComments]: any = useState();
-  const commentRef: any = useRef();
+  const [newComment, setNewComment]: [string, React.Dispatch<React.SetStateAction<string>>] = useState("");
+  const [comments, setComments]: [IComment[], React.Dispatch<React.SetStateAction<IComment[]>>] = useState([{
+    _id: "",
+    body: "",
+    date: "",
+    article: "",
+    user: {
+      _id: "",
+      username: "",
+      email: "",
+      image: "",
+      password: ""
+    }
+  }]);
+  const commentRef = useRef<HTMLInputElement>(null);
 
   const navigate = useNavigate();
   const axiosPrivate = useAxiosPrivate();
@@ -45,11 +65,10 @@ export default function ArticleDetails({
       try {
         const likesReq = await axiosPrivate.get(LIKES_URL + article._id);
         setLikes(await likesReq.data);
-
+        
         const commentsReq = await axiosPrivate.get(COMMENTS_URL + article._id);
         setComments(await commentsReq.data);
-
-        console.log(comments);
+        
       } catch (err: any) {
         if (!err.response) {
           console.log("No server response");
@@ -70,10 +89,6 @@ export default function ArticleDetails({
     }
   }, [likes, auth]);
 
-  useEffect(() => {
-    console.log(comments);
-  }, [comments]);
-
   async function handleLikes() {
     if (!auth.token) {
       navigate("/login");
@@ -81,11 +96,12 @@ export default function ArticleDetails({
 
     if (isLiked) {
       const newLikes = likes.filter((like: any) => like.user !== auth.userId);
+      setLikes(newLikes);
 
-      setLikes(newLikes);
     } else {
-      const newLikes = [...likes, { user: auth.userId }];
+      const newLikes = [...likes, { user: auth.userId, article: article._id, _id: "" }];
       setLikes(newLikes);
+
     }
 
     try {
@@ -104,7 +120,7 @@ export default function ArticleDetails({
 
     if (newComment) {
       const newComments = [
-        { user: userProfile, body: newComment, article: article._id },
+        { user: userProfile, body: newComment, article: article._id, date: "", _id: "" },
         ...comments,
       ];
 
@@ -123,9 +139,9 @@ export default function ArticleDetails({
     }
   }
 
-  async function handleDeleteComment(commentId: any) {
+  async function handleDeleteComment(commentId: string) {
     const newComments = comments.filter(
-      (comment: any) => comment._id !== commentId
+      (comment: IComment) => comment._id !== commentId
     );
 
     setComments(newComments);
@@ -192,7 +208,7 @@ export default function ArticleDetails({
                 <button
                   className="btn btn-ghost text-black"
                   onClick={() => {
-                    commentRef.current.focus();
+                    commentRef.current?.focus();
                   }}
                 >
                   Comment

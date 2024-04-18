@@ -26,7 +26,7 @@ export default function Login() {
   const location = useLocation();
   const from = location.state?.from?.pathname || "/";
 
-  const userRef: any = useRef();
+  const userRef = useRef<HTMLInputElement>(null);
   const errRef: any = useRef();
 
   const [email, setEmail] = useState("");
@@ -40,7 +40,7 @@ export default function Login() {
   const [errMsg, setErrMsg] = useState("");
 
   useEffect(() => {
-    userRef.current.focus();
+    userRef.current?.focus();
   }, []);
 
   useEffect(() => {

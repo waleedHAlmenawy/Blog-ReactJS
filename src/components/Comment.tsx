@@ -3,8 +3,15 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useState } from "react";
 import useAuth from "../hooks/useAuth";
 import PopupMessage from "./popups/PopupMessage";
+import { IComment } from "../models/comment.model";
 
-export default function Comment({ comment, handleDeleteComment }: any) {
+export default function Comment({
+  comment,
+  handleDeleteComment,
+}: {
+  comment: IComment;
+  handleDeleteComment: any;
+}) {
   const [trigger, setTrigger] = useState(false);
 
   const { auth }: any = useAuth();

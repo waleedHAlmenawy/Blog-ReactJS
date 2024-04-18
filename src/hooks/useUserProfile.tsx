@@ -1,13 +1,26 @@
 import { useEffect, useState } from "react";
 import useAxiosPrivate from "./useAxiosPrivate";
 import useAuth from "./useAuth";
+import { IUser } from "../models/user.model";
 
 const USER_URL = "/users/profile";
 
-const useUserProfile = () => {
+const useUserProfile = (): [
+  IUser,
+  React.Dispatch<React.SetStateAction<IUser>>
+] => {
   const axiosPrivate = useAxiosPrivate();
+  const [userProfile, setUserProfile]: [
+    IUser,
+    React.Dispatch<React.SetStateAction<IUser>>
+  ] = useState({
+    _id: "",
+    username: "",
+    email: "",
+    image: "",
+    password: "",
+  });
 
-  const [userProfile, setUserProfile]: any = useState({});
   const { auth }: any = useAuth();
   // const [error, setError] = useState(null);
   // const [loading, setLoading] = useState(false);

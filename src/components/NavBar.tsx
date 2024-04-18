@@ -9,7 +9,7 @@ import { useCookies } from "react-cookie";
 import PopupMessage from "./popups/PopupMessage";
 
 export default function NavBar() {
-  const [userProfile, setUserProfile]: any = useUserProfile();
+  const [userProfile, setUserProfile] = useUserProfile();
   const navigate = useNavigate();
   const { setAuth }: any = useAuth();
   const [, , removeCookie] = useCookies();
@@ -23,7 +23,13 @@ export default function NavBar() {
 
   function handleLogout() {
     setAuth({});
-    setUserProfile({});
+    setUserProfile({
+      _id: "",
+      username: "",
+      email: "",
+      image: "",
+      password: "",
+    });
     removeCookie("token");
     removeCookie("userId");
     navigate("/login");
@@ -34,7 +40,6 @@ export default function NavBar() {
       <PopupMessage
         trigger={trigger}
         setTrigger={setTrigger}
-        btnColor="red"
         btnName="Logout"
         message="Do you really want to logout?"
         handleOnClick={() => {

@@ -4,6 +4,7 @@ import { useState } from "react";
 import useUser from "../hooks/useUserProfile";
 import { useNavigate } from "react-router-dom";
 import PopupMessage from "./popups/PopupMessage";
+import { IUser } from "../models/user.model";
 
 export default function UserData({
   setArticleTrigger,
@@ -12,13 +13,13 @@ export default function UserData({
   handleDeleteArticle,
 }: {
   setArticleTrigger: React.Dispatch<React.SetStateAction<boolean>>;
-  user: any;
+  user: IUser;
   articleId: string;
   handleDeleteArticle: any;
 }) {
   const [trigger, setTrigger] = useState(false);
   const [btnSwitch, setBtnSwitch] = useState("");
-  const [userProfile]: any = useUser();
+  const [userProfile] = useUser();
 
   const navigate = useNavigate();
 

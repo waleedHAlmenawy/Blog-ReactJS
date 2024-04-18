@@ -18,7 +18,7 @@ const REGISTER_URL = "/users/register";
 export default function Register() {
   const navigate = useNavigate();
 
-  const userRef: any = useRef();
+  const userRef = useRef<HTMLInputElement>(null);
   const errRef: any = useRef();
 
   const [user, setUser] = useState("");
@@ -40,7 +40,7 @@ export default function Register() {
   const [errMsg, setErrMsg] = useState("");
 
   useEffect(() => {
-    userRef.current.focus();
+    userRef.current?.focus();
   }, []);
 
   useEffect(() => {
