@@ -33,11 +33,10 @@ const useArticles = (): [
 
   useEffect(() => {
     (async function () {
-      if (!articles[0]) {
+      if (!articles[0]._id) {
         try {
           const req = await axios.get(ARTICLE_URL);
           setArticles(await req.data);
-          console.log(req.data);
         } catch (err: any) {
           if (!err.response) {
             console.log("No server response");

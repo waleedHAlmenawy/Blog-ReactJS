@@ -30,31 +30,45 @@ export default function ArticleDetails({
 }) {
   /* User Auth */
   const { auth }: any = useAuth();
-  const [userProfile]: [IUser, React.Dispatch<React.SetStateAction<IUser>>] = useUserProfile();
+  const [userProfile]: [IUser, React.Dispatch<React.SetStateAction<IUser>>] =
+    useUserProfile();
 
   /* Likes */
   const [isLiked, setIsLiked] = useState(false);
-  const [likes, setLikes]: [ILike[], React.Dispatch<React.SetStateAction<ILike[]>>] = useState([{
-    _id: "",
-    article: "",
-    user: ""
-  }]);
+  const [likes, setLikes]: [
+    ILike[],
+    React.Dispatch<React.SetStateAction<ILike[]>>
+  ] = useState([
+    {
+      _id: "",
+      article: "",
+      user: "",
+    },
+  ]);
 
   /* Comments */
-  const [newComment, setNewComment]: [string, React.Dispatch<React.SetStateAction<string>>] = useState("");
-  const [comments, setComments]: [IComment[], React.Dispatch<React.SetStateAction<IComment[]>>] = useState([{
-    _id: "",
-    body: "",
-    date: "",
-    article: "",
-    user: {
+  const [newComment, setNewComment]: [
+    string,
+    React.Dispatch<React.SetStateAction<string>>
+  ] = useState("");
+  const [comments, setComments]: [
+    IComment[],
+    React.Dispatch<React.SetStateAction<IComment[]>>
+  ] = useState([
+    {
       _id: "",
-      username: "",
-      email: "",
-      image: "",
-      password: ""
-    }
-  }]);
+      body: "",
+      date: "",
+      article: "",
+      user: {
+        _id: "",
+        username: "",
+        email: "",
+        image: "",
+        password: "",
+      },
+    },
+  ]);
   const commentRef = useRef<HTMLInputElement>(null);
 
   const navigate = useNavigate();
@@ -62,16 +76,19 @@ export default function ArticleDetails({
 
   useEffect(() => {
     (async function () {
-      try {
-        const likesReq = await axiosPrivate.get(LIKES_URL + article._id);
-        setLikes(await likesReq.data);
-        
-        const commentsReq = await axiosPrivate.get(COMMENTS_URL + article._id);
-        setComments(await commentsReq.data);
-        
-      } catch (err: any) {
-        if (!err.response) {
-          console.log("No server response");
+      if (article._id) {
+        try {
+          const likesReq = await axiosPrivate.get(LIKES_URL + article._id);
+          setLikes(await likesReq.data);
+
+          const commentsReq = await axiosPrivate.get(
+            COMMENTS_URL + article._id
+          );
+          setComments(await commentsReq.data);
+        } catch (err: any) {
+          if (!err.response) {
+            console.log("No server response");
+          }
         }
       }
     })();
@@ -97,11 +114,12 @@ export default function ArticleDetails({
     if (isLiked) {
       const newLikes = likes.filter((like: any) => like.user !== auth.userId);
       setLikes(newLikes);
-
     } else {
-      const newLikes = [...likes, { user: auth.userId, article: article._id, _id: "" }];
+      const newLikes = [
+        ...likes,
+        { user: auth.userId, article: article._id, _id: "" },
+      ];
       setLikes(newLikes);
-
     }
 
     try {
@@ -120,7 +138,13 @@ export default function ArticleDetails({
 
     if (newComment) {
       const newComments = [
-        { user: userProfile, body: newComment, article: article._id, date: "", _id: "" },
+        {
+          user: userProfile,
+          body: newComment,
+          article: article._id,
+          date: "",
+          _id: "",
+        },
         ...comments,
       ];
 
@@ -218,11 +242,12 @@ export default function ArticleDetails({
               <div className="line"></div>
 
               <section className="comments-section">
-                {comments.map((comment: any) => {
+                {comments.map((comment: IComment) => {
                   return (
                     <Comment
                       comment={comment}
                       handleDeleteComment={handleDeleteComment}
+                      key={comment._id}
                     />
                   );
                 })}

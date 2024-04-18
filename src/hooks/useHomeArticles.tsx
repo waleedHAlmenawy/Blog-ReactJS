@@ -32,15 +32,15 @@ const useHomeArticles = (): [
 
   useEffect(() => {
     (async function () {
-      if (!homeArticles[0]) {
+      if (!homeArticles[0]._id) {
         try {
           const req = await axios.get(ARTICLE_URL);
 
           const articles = await req.data.map((article: any) => {
             let date = new Date(+article.date);
 
-            let day = `${date.getDay()}`;
-            let month = `${date.getMonth()}`;
+            let day = `${date.getDate()}`;
+            let month = `${date.getMonth() + 1}`;
             let year = `${date.getFullYear()}`;
 
             if (+day < 10) day = "0" + day;

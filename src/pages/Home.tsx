@@ -10,6 +10,7 @@ import { useNavigate } from "react-router-dom";
 import Footer from "../components/Footer";
 import BackgroundImage from "../components/BackgroundImage";
 import { IArticle } from "../models/article.model";
+import { useEffect } from "react";
 
 const ARTICLE_URL = "/articles/";
 

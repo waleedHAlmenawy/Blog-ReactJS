@@ -53,7 +53,6 @@ export default function ArticleForm() {
 
   useEffect(() => {
     const result = BODY_REGEX.test(body);
-    console.log(result);
     setValidBody(result);
   }, [body]);
 
@@ -81,7 +80,6 @@ export default function ArticleForm() {
       articleData.append("image", image);
 
       const res = await axiosPrivate.post(ARTICLE_URL, articleData);
-      console.log(res.data);
       navigate("/");
     } catch (err: any) {
       if (!err.response) {
@@ -103,7 +101,6 @@ export default function ArticleForm() {
         articleData
       );
       
-      console.log(res.data);
       navigate("/");
     } catch (err: any) {
       if (!err.response) {
