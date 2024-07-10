@@ -34,7 +34,7 @@ export default function AddComment({
               src={
                 userProfile.image
                   ? userProfile.image
-                  : "http://localhost:3000/profile-image-placeholder.svg"
+                  : "https://blog-nestjs-cryn.onrender.com/profile-image-placeholder.svg"
               }
             />
           </div>

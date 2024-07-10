@@ -27,7 +27,9 @@ export default function ArticleForm() {
   const [image, setImage]: any = useState(
     "https://images.unsplash.com/photo-1712285838110-db4092f03030?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
   );
-  const [showImage, setShowImage]: any = useState("http://localhost:3000/article-image-placeholder.jpg");
+  const [showImage, setShowImage]: any = useState(
+    "https://blog-nestjs-cryn.onrender.com/article-image-placeholder.jpg"
+  );
 
   useEffect(() => {
     articleRef.current?.focus();
@@ -100,7 +102,7 @@ export default function ArticleForm() {
         ARTICLE_URL + "/" + location.state.articleId,
         articleData
       );
-      
+
       navigate("/");
     } catch (err: any) {
       if (!err.response) {
